@@ -2,7 +2,8 @@
   --bg: #252836;
   --primary-color: #1f1d2b;
   --secondary-color: #333645;
-  --acent-color: #abbbc2;
+  --acent-color: #ea7c69;
+  --text-color: #abbbc2;
   --overlay-color: rgba(0, 0, 0, 0.7);
 }
 
@@ -13,7 +14,59 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.container {
+  min-height: 100vh;
   background-color: var(--bg);
-  color: var(--acent-color);
+  color: white;
+}
+
+.wrapper {
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+@media screen and (max-width: 1536px) {
+  .wrapper {
+    max-width: 1366px;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .wrapper {
+    max-width: 1024px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    max-width: 768px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .wrapper {
+    max-width: 640px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .wrapper {
+    max-width: 475px;
+  }
+}
+
+@media screen and (max-width: 475px) {
+  .wrapper {
+    max-width: 100%;
+    padding: 0 20px;
+  }
 }
