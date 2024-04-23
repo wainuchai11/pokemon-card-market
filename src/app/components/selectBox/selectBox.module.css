@@ -1,7 +1,7 @@
 .selectBox {
   position: relative;
   display: inline-block;
-  width: 200px;
+  width: 100px;
   background-color: #f1f1f1;
   border-radius: 5px;
   overflow: hidden;
@@ -27,11 +27,11 @@
   pointer-events: none;
 }
 
-.select.selectBox {
+.selectBox {
   position: relative;
   display: inline-block;
   width: 200px;
-  background-color: #f1f1f1;
+  background-color: var(--primary-color);
   border-radius: 5px;
   overflow: hidden;
 }
@@ -45,6 +45,7 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   cursor: pointer;
+  color: white;
 }
 
 .selectBox::after {
@@ -58,7 +59,7 @@
 
 .selectBox select:hover,
 .selectBox select:focus {
-  background-color: #e0e0e0;
+  background-color: transparent
 }
 
 .selectBox select option:hover {
@@ -71,7 +72,7 @@
 }
 .selectBox select:hover,
 .selectBox select:focus {
-  background-color: #e0e0e0;
+  border: 1px solid white;
 }
 
 .selectBox select option:hover {

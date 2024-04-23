@@ -20,7 +20,12 @@ function Card({ card }: { card: PokemonCard }) {
           </div>
         </div>
         <div className={styles.button}>
-          <button className={styles.addToCart}>Add to Cart</button>
+          <button className={styles.addToCart}>
+            <Image  src="/shopping-bag.png" alt="" width={10} height={10} />
+            <span className={styles.textBtn}>
+              Add to Cart
+            </span>
+          </button>
         </div>
       </div>
     </div>
