@@ -2,7 +2,7 @@ import { useState, FC, useEffect } from "react";
 import styles from "./drawer.module.css";
 import Image from "next/image";
 
-const Drawer = ({ open, onSetclose, cartItems }: DrawerProps) => {
+const Drawer = ({ open, onSetclose }: DrawerProps) => {
   useEffect(() => {
     if (open) {
       openNav();
@@ -39,7 +39,13 @@ const Drawer = ({ open, onSetclose, cartItems }: DrawerProps) => {
           </div>
           <div className={styles.detail}>
             <div className={styles.card}>
-                <Image className={styles.image} src="https://fakeimg.pl/44x60/" alt="" width={44} height={60} />
+              <Image
+                className={styles.image}
+                src="https://fakeimg.pl/44x60/"
+                alt=""
+                width={44}
+                height={60}
+              />
             </div>
             <div className={styles.cardDeatail}>
               <div className={styles.cardName}>card name</div>
@@ -73,7 +79,6 @@ const Drawer = ({ open, onSetclose, cartItems }: DrawerProps) => {
 type DrawerProps = {
   open: boolean;
   onSetclose: (item: any) => void;
-  cartItems: object[];
 };
 
 export default Drawer;
