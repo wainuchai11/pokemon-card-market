@@ -1,13 +1,29 @@
-.selectBox {
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.selector {
   position: relative;
   display: inline-block;
-  width: 200px;
+  width: 100px;
   background-color: #f1f1f1;
   border-radius: 5px;
   overflow: hidden;
 }
 
-.selectBox select {
+.selector select {
   width: 100%;
   padding: 10px;
   border: none;
@@ -18,7 +34,7 @@
   cursor: pointer;
 }
 
-.selectBox::after {
+.selector::after {
   content: "\25BC";
   position: absolute;
   top: 50%;
@@ -27,7 +43,7 @@
   pointer-events: none;
 }
 
-.select.selectBox {
+.select.selector {
   position: relative;
   display: inline-block;
   width: 200px;
@@ -36,7 +52,7 @@
   overflow: hidden;
 }
 
-.selectBox select {
+.selector select {
   width: 100%;
   padding: 10px;
   border: none;
@@ -47,7 +63,7 @@
   cursor: pointer;
 }
 
-.selectBox::after {
+.selector::after {
   content: "\25BC";
   position: absolute;
   top: 50%;
@@ -56,29 +72,49 @@
   pointer-events: none;
 }
 
-.selectBox select:hover,
-.selectBox select:focus {
+.selector select:hover,
+.selector select:focus {
   background-color: #e0e0e0;
 }
 
-.selectBox select option:hover {
+.selector select option:hover {
   background-color: #c0c0c0;
 }
 
-.selectBox select option:checked {
+.selector select option:checked {
   background-color: #007bff;
   color: #fff;
 }
-.selectBox select:hover,
-.selectBox select:focus {
+.selector select:hover,
+.selector select:focus {
   background-color: #e0e0e0;
 }
 
-.selectBox select option:hover {
+.selector select option:hover {
   background-color: #c0c0c0;
 }
 
-.selectBox select option:checked {
+.selector select option:checked {
   background-color: #007bff;
   color: #fff;
+}
+
+.button {
+  background-color: var(--acent-color);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.button:hover {
+  opacity: 0.18;
+}
+
+.logo {
+  font-size: 18px;
+  font-weight: 700;
 }

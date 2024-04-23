@@ -1,8 +1,35 @@
 "use client";
 import Image from "next/image";
 import styles from "./navbar.module.css";
+import { useEffect, useState } from "react";
 
-function Navbar() {
+interface NavbarProps {
+  search: (value: string) => void;
+}
+
+function Navbar({ search }: NavbarProps) {
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [debouncedSearchValue, setDebouncedSearchValue] =
+    useState<string>(searchValue);
+
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedSearchValue(searchValue);
+    }, 500);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [searchValue]);
+
+  useEffect(() => {
+    search(debouncedSearchValue);
+  }, [debouncedSearchValue, search]);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(e.target.value);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -13,6 +40,8 @@ function Navbar() {
               type="text"
               placeholder="Search by Name"
               className={styles.searchInput}
+              value={searchValue}
+              onChange={handleSearch}
             />
             <Image
               className={styles.searchIcon}
@@ -33,6 +62,8 @@ function Navbar() {
             type="text"
             placeholder="Search by Name"
             className={styles.searchInput}
+            value={searchValue}
+            onChange={handleSearch}
           />
           <Image
             className={styles.searchIcon}

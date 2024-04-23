@@ -1,21 +1,15 @@
+"use client";
+
+import { CardSet, PokemonCard } from "../../../../constant";
 import Card from "../card/Card";
 import styles from "./cardList.module.css";
 
-function CardList() {
+function CardList({ cards = [] }: { readonly cards?: PokemonCard[] }) {
   return (
     <div className={styles.container}>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {cards.map((card) => (
+        <Card key={card.id} card={card} />
+      ))}
     </div>
   );
 }

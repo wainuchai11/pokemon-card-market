@@ -3,7 +3,7 @@ import { FC, useEffect, useMemo, useState } from "react";
 import SelectBox from "../selectBox/SelectBox";
 import styles from "./filter.module.css";
 import axios from "axios";
-import { CardSet } from "../../../../constant";
+import { CardSet, TypeAndRarity } from "../../../../constant";
 
 const Filter: FC<FilterProps> = ({
   setSelected,
@@ -11,8 +11,8 @@ const Filter: FC<FilterProps> = ({
   rarirySelected,
 }) => {
   const [sets, setSets] = useState<CardSet[]>([]);
-  const [types, setTypes] = useState<typeAndRarity[]>([]);
-  const [rarities, setRarities] = useState<typeAndRarity[]>([]);
+  const [types, setTypes] = useState<TypeAndRarity[]>([]);
+  const [rarities, setRarities] = useState<TypeAndRarity[]>([]);
   const [selectedSet, setSelectedSet] = useState<any>();
   const [selectedType, setSelectedType] = useState<any>();
   const [selectedRarity, setSelectedRarity] = useState<any>();
@@ -70,9 +70,15 @@ const Filter: FC<FilterProps> = ({
   }, []);
 
   useEffect(() => {
-    setSelected = selectedSet;
-    typeSelected = selectedType;
-    rarirySelected = selectedRarity;
+    if (setSelected) {
+      setSelected(selectedSet);
+    }
+    if (typeSelected) {
+      typeSelected(selectedType);
+    }
+    if (rarirySelected) {
+      rarirySelected(selectedRarity);
+    }
   }, [selectedSet, selectedType, selectedRarity]);
 
   return (
@@ -99,12 +105,6 @@ type FilterProps = {
   setSelected?: (item: string) => void;
   typeSelected?: (item: string) => void;
   rarirySelected?: (item: string) => void;
-};
-
-type typeAndRarity = {
-  name: string;
-  id: number;
-  value: string;
 };
 
 export default Filter;
