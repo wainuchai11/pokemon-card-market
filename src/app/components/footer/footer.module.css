@@ -109,10 +109,17 @@
   width: 100px;
   display: flex;
   justify-content: center;
+  border: none;
 }
 
 .button:hover {
   border: 1px solid white;
+}
+
+.button:disabled {
+  background-color: #ccc;
+  color: #666;
+  cursor: not-allowed;
 }
 
 .logo {

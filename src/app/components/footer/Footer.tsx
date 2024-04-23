@@ -2,7 +2,13 @@
 import { useState, FC } from "react";
 import styles from "./footer.module.css";
 
-const Footer: FC<FooterProps> = ({ dataPerPage }) => {
+const Footer: FC<FooterProps> = ({
+  dataPerPage,
+  hasPrev,
+  hasNext,
+  goNext,
+  goPrev,
+}) => {
   const [perpage, setPerpage] = useState<number>(20);
 
   const handlePerPageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -12,7 +18,9 @@ const Footer: FC<FooterProps> = ({ dataPerPage }) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.button}>Previous</div>
+      <button className={styles.button} disabled={!hasPrev} onClick={goPrev}>
+        Previous
+      </button>
       <div className={styles.content}>
         <div className={styles.logo}>Pokemon market</div>
         <div className={styles.copyright}>&copy; 2024 Pokemon Market</div>
@@ -26,13 +34,19 @@ const Footer: FC<FooterProps> = ({ dataPerPage }) => {
           </select>
         </div>
       </div>
-      <div className={styles.button}>Next</div>
+      <button className={styles.button} disabled={!hasNext} onClick={goNext}>
+        Next
+      </button>
     </div>
   );
 };
 
 type FooterProps = {
   dataPerPage: (perPage: number) => void;
+  hasPrev: boolean;
+  hasNext: boolean;
+  goNext: () => void;
+  goPrev: () => void;
 };
 
 export default Footer;

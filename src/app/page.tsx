@@ -19,11 +19,16 @@ function Home() {
   const [cards, setCards] = useState<PokemonCard[]>([]);
   const [perPage, setPerPage] = useState<number>(20);
   const [page, setPage] = useState<number>(1);
+  const [totalCout, setTotalCount] = useState<number>(0);
+  const [nextPage, setNextPage] = useState<number>(1);
+  const [prevPage, setPrevPage] = useState<number>(1);
+
+  const hasPrevious = perPage * (page - 1) > 0;
+  const hasNext = perPage * page < totalCout;
 
   useEffect(() => {
     let type = "";
     let rarity = "";
-    let set = "";
     let pageNo = page.toString();
 
     if (selectedType) {
@@ -42,7 +47,7 @@ function Home() {
       pageNo,
       perPage.toString()
     );
-  }, [selectedSet, selectedType, selectedRarity, searchName, perPage]);
+  }, [selectedSet, selectedType, selectedRarity, searchName, perPage, page]);
 
   const handleFetchCard = (
     name?: string,
@@ -97,6 +102,8 @@ function Home() {
       .get(url)
       .then((response) => {
         setCards(response.data.data);
+        setPage(parseInt(response.data.page));
+        setTotalCount(parseInt(response.data.totalCount));
       })
       .catch((error) => console.error(error))
       .finally(() => setIsLoading(false));
@@ -129,7 +136,13 @@ function Home() {
           <div className={styles.notfound}>No data found</div>
         )}
 
-        <Footer dataPerPage={setPerPage} />
+        <Footer
+          dataPerPage={setPerPage}
+          hasPrev={hasPrevious}
+          hasNext={hasNext}
+          goNext={() => setPage(page + 1)}
+          goPrev={() => setPage(page - 1)}
+        />
       </div>
     </Provider>
   );
