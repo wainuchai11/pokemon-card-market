@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 import { CardSet, PokemonCard, TypeAndRarity } from "../../constant";
 import CardList from "./components/cardList/CardList";
 import Filter from "./components/filter/Filter";
@@ -7,7 +9,6 @@ import styles from "./homepage.module.css";
 import Navbar from "./components/navbar/Navbar";
 import axios from "axios";
 import Footer from "./components/footer/Footer";
-import Drawer from "./components/drawer/Drawer";
 
 function Home() {
   const [selectedSet, setSelectedSet] = useState<CardSet>();
@@ -18,7 +19,6 @@ function Home() {
   const [cards, setCards] = useState<PokemonCard[]>([]);
   const [perPage, setPerPage] = useState<number>(20);
   const [page, setPage] = useState<number>(1);
-
 
   useEffect(() => {
     let type = "";
@@ -103,33 +103,35 @@ function Home() {
   };
 
   return (
-    <div className={styles.container}>
-      <Navbar search={setSearchName} />
-      <Filter
-        setSelected={(item: string) =>
-          setSelectedSet(item as unknown as CardSet | undefined)
-        }
-        typeSelected={(item: string) =>
-          setSelectedType(item as unknown as TypeAndRarity | undefined)
-        }
-        rarirySelected={(item: string) =>
-          setSelectedRarity(item as unknown as TypeAndRarity | undefined)
-        }
-      />
+    <Provider store={store}>
+      <div className={styles.container}>
+        <Navbar search={setSearchName} />
+        <Filter
+          setSelected={(item: string) =>
+            setSelectedSet(item as unknown as CardSet | undefined)
+          }
+          typeSelected={(item: string) =>
+            setSelectedType(item as unknown as TypeAndRarity | undefined)
+          }
+          rarirySelected={(item: string) =>
+            setSelectedRarity(item as unknown as TypeAndRarity | undefined)
+          }
+        />
 
-      {isLoading ? (
-        <div className={styles.loading}>Loading...</div>
-      ) : (
-        <>
-          <CardList cards={cards} />
-        </>
-      )}
-      {!isLoading && cards.length === 0 && (
-        <div className={styles.notfound}>No data found</div>
-      )}
+        {isLoading ? (
+          <div className={styles.loading}>Loading...</div>
+        ) : (
+          <>
+            <CardList cards={cards} />
+          </>
+        )}
+        {!isLoading && cards.length === 0 && (
+          <div className={styles.notfound}>No data found</div>
+        )}
 
-      <Footer dataPerPage={setPerPage} />
-    </div>
+        <Footer dataPerPage={setPerPage} />
+      </div>
+    </Provider>
   );
 }
 

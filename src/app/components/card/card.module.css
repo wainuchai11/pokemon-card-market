@@ -64,14 +64,19 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s;
-
 }
 
 .addToCart:hover {
   background-color: rgba(255, 255, 255, 0.18);
 }
 
-.textBtn{
+.addToCart:disabled {
+  background-color: rgba(255, 255, 255, 0.04);
+  cursor: not-allowed;
+  color: var(--text-color);
+}
+
+.textBtn {
   margin-left: 10px;
   text-transform: capitalize;
 }
