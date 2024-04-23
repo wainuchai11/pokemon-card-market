@@ -1,0 +1,91 @@
+.selectBox {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.selectBox select {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.selectBox::after {
+  content: "\25BC"; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Styling for option hover and selected state */
+.select.selectBox {
+  position: relative;
+  display: inline-block;
+  /* font-family: Arial, sans-serif; */
+  width: 200px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.selectBox select {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background-color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.selectBox::after {
+  content: "\25BC"; /* Unicode character for down arrow */
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Styling for option hover and selected state */
+.selectBox select:hover,
+.selectBox select:focus {
+  background-color: #e0e0e0;
+}
+
+/* Example hover effect */
+.selectBox select option:hover {
+  background-color: #c0c0c0;
+}
+
+/* Example selected state */
+.selectBox select option:checked {
+  background-color: #007bff;
+  color: #fff;
+}
+.selectBox select:hover,
+.selectBox select:focus {
+  background-color: #e0e0e0;
+}
+
+/* Example hover effect */
+.selectBox select option:hover {
+  background-color: #c0c0c0;
+}
+
+/* Example selected state */
+.selectBox select option:checked {
+  background-color: #007bff;
+  color: #fff;
+}

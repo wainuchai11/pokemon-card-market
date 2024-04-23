@@ -1,8 +1,13 @@
+.container {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 20px 0;
 }
 
 .actions {
@@ -49,13 +54,11 @@
   display: none;
 }
 
-@media screen and (max-width: 475px) {
+@media screen and (max-width: 768px) {
   .container {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #ccc;
   }
 
   .header {

@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  flex: 1;
+}
+
+.filters {
+  display: flex;
+  flex : 1;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+}
+
+@media screen and (max-width: 640px) {
+  .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .filters {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 0;
+  }
+    
+}
