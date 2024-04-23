@@ -7,6 +7,7 @@ import styles from "./homepage.module.css";
 import Navbar from "./components/navbar/Navbar";
 import axios from "axios";
 import Footer from "./components/footer/Footer";
+import Drawer from "./components/drawer/Drawer";
 
 function Home() {
   const [selectedSet, setSelectedSet] = useState<CardSet>();
@@ -17,15 +18,7 @@ function Home() {
   const [cards, setCards] = useState<PokemonCard[]>([]);
   const [perPage, setPerPage] = useState<number>(20);
   const [page, setPage] = useState<number>(1);
-  const [query, setQuery] = useState<string>("");
 
-  useEffect(() => {
-    console.log(selectedSet);
-    console.log(selectedType);
-    console.log(selectedRarity);
-    console.log(searchName);
-    console.log(perPage);
-  }, [selectedSet, selectedType, selectedRarity, searchName, perPage]);
 
   useEffect(() => {
     let type = "";

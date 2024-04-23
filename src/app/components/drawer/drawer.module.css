@@ -1,0 +1,215 @@
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: -100px;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding: 60px 120px 0 20px;
+}
+
+.sidenav.open {
+  visibility: visible;
+  opacity: 1;
+  width: 500px;
+  z-index: 9999;
+}
+
+.sidenav.close {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.25s, opacity 0.5s linear;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.clearBtn {
+  font-size: 12px;
+  text-decoration: solid underline;
+  cursor: pointer;
+}
+
+.closebtn {
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+  cursor: pointer;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: var(--acent-color);
+}
+
+.content {
+  height: calc(100vh - 300px);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.subTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.item {
+  flex: 1;
+}
+
+.qty {
+  flex: 5;
+}
+
+.itemPrice {
+  flex: 1;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card {
+  flex: 1;
+}
+
+.image {
+  border-radius: 4px;
+}
+
+.cardDeatail {
+  flex: 5;
+  display: block;
+  align-items: center;
+  gap: 10px;
+}
+
+.cardName {
+  display: flex;
+  gap: 10px;
+}
+
+.price {
+  font-size: 12px;
+  color: var(--text-color);
+}
+
+.sumPrice {
+  flex: 1;
+}
+
+.buttonContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.plusBtn,
+.minusBtn {
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+}
+
+.plusBtn:hover,
+.minusBtn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+}
+
+.qtyItem {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.totalCardContainer,
+.totalPriceContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.totalText,
+.totalPriceText {
+  font-size: 12px;
+  color: var(--text-color);
+}
+
+.totalNumber,
+.totalPriceNumber {
+  font-size: 12px;
+  color: var(--text-color);
+}
+
+.paymentBtn {
+  width: 100%;
+  height: 48px;
+  cursor: pointer;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  background-color: var(--acent-color);
+}
+
+.paymentBtn:hover {
+  background-color: #ff6f61;
+}
