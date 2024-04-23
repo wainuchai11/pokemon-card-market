@@ -11,12 +11,12 @@ function Card({ card }: { card: PokemonCard }) {
       </div>
       <div className={styles.cardContent}>
         <div className={styles.detail}>
-          <div className={styles.productTitle}>{card.name}</div>
+          <div className={styles.productTitle}>{card?.name}</div>
           <div className={styles.productPrice}>
             <div className={styles.price}>
-              $ {card.cardmarket.prices.averageSellPrice}
+              $ {card?.cardmarket?.prices?.averageSellPrice ?? 0} 
             </div>
-            <div className={styles.quantity}>{card.set.total} Cards</div>
+            <div className={styles.quantity}>{card?.set.total} Cards</div>
           </div>
         </div>
         <div className={styles.button}>

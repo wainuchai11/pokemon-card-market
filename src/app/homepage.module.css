@@ -1,3 +1,13 @@
-.container {
-    
+.notfound {
+  font-size: 30px;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.loading {
+  font-size: 30px;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
 }

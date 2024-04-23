@@ -9,13 +9,15 @@ import axios from "axios";
 import Footer from "./components/footer/Footer";
 
 function Home() {
-  const [selectedSet, setSelectedSet] = useState<CardSet[]>([]);
+  const [selectedSet, setSelectedSet] = useState<CardSet>();
   const [selectedType, setSelectedType] = useState<TypeAndRarity>();
   const [selectedRarity, setSelectedRarity] = useState<TypeAndRarity>();
   const [searchName, setSearchName] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [cards, setCards] = useState<PokemonCard[]>([]);
   const [perPage, setPerPage] = useState<number>(20);
+  const [page, setPage] = useState<number>(1);
+  const [query, setQuery] = useState<string>("");
 
   useEffect(() => {
     console.log(selectedSet);
@@ -26,13 +28,11 @@ function Home() {
   }, [selectedSet, selectedType, selectedRarity, searchName, perPage]);
 
   useEffect(() => {
-    let name = "";
     let type = "";
     let rarity = "";
+    let set = "";
+    let pageNo = page.toString();
 
-    if (selectedSet.length > 0) {
-      name = selectedSet[0].name;
-    }
     if (selectedType) {
       type = JSON.stringify(selectedType);
     }
@@ -41,19 +41,71 @@ function Home() {
       rarity = JSON.stringify(selectedRarity);
     }
 
-    handleFetchCard(name, type, rarity);
-  }, [searchName, selectedType, selectedRarity]);
+    handleFetchCard(
+      searchName,
+      selectedSet?.name ?? "",
+      type,
+      rarity,
+      pageNo,
+      perPage.toString()
+    );
+  }, [selectedSet, selectedType, selectedRarity, searchName, perPage]);
 
-  const handleFetchCard = (name: string, type: string, rarity: string) => {
-    console.log("fetching data", name, type, rarity);
+  const handleFetchCard = (
+    name?: string,
+    set?: string,
+    type?: string,
+    rarity?: string,
+    page?: string,
+    dataPerPage?: string
+  ) => {
     setIsLoading(true);
-    let url = "https://api.pokemontcg.io/v2/cards?pageSize=20";
+    let url = `https://api.pokemontcg.io/v2/cards?page=${page}&pageSize=${dataPerPage}`;
+
+    const addQueryParam = (param: string, value: string) => {
+      if (url.includes("?")) {
+        const queryParams = new URLSearchParams(url.split("?")[1]);
+        let existingQParam = queryParams.get("q");
+        if (existingQParam) {
+          existingQParam += ` ${param}:${encodeURIComponent(value)}`;
+        } else {
+          existingQParam = `${param}:${encodeURIComponent(value)}`;
+        }
+        queryParams.set("q", existingQParam);
+        url = `${url.split("?")[0]}?${queryParams.toString()}`;
+      } else {
+        url += `?q=${param}:${encodeURIComponent(value)}`;
+      }
+    };
+
+    if (name) addQueryParam("name", name);
+
+    if (type) {
+      const { name: typeName } = JSON.parse(type);
+      addQueryParam("types", typeName.toLowerCase());
+    }
+
+    if (rarity) {
+      const { name: rarityName } = JSON.parse(rarity);
+      const formattedRarity = rarityName
+        .replace(/\b\w/g, (match: string) => match.toLowerCase())
+        .replace(/\s+(\w)/g, (_: any, letter: string) => letter.toUpperCase());
+      addQueryParam("rarity", formattedRarity);
+    }
+
+    if (set) {
+      const formattedSet = set
+        .replace(/\b\w/g, (match: string) => match.toLowerCase())
+        .replace(/\s+(\w)/g, (_: any, letter: string) => letter.toUpperCase());
+      addQueryParam("set.name", formattedSet);
+    }
+
     axios
       .get(url)
       .then((response) => {
         setCards(response.data.data);
       })
-      .catch((error) => console.log(error))
+      .catch((error) => console.error(error))
       .finally(() => setIsLoading(false));
   };
 
@@ -62,7 +114,7 @@ function Home() {
       <Navbar search={setSearchName} />
       <Filter
         setSelected={(item: string) =>
-          setSelectedSet(item as unknown as CardSet[])
+          setSelectedSet(item as unknown as CardSet | undefined)
         }
         typeSelected={(item: string) =>
           setSelectedType(item as unknown as TypeAndRarity | undefined)
@@ -72,8 +124,17 @@ function Home() {
         }
       />
 
-      {isLoading && <div>Loading...</div>}
-      <CardList cards={cards} />
+      {isLoading ? (
+        <div className={styles.loading}>Loading...</div>
+      ) : (
+        <>
+          <CardList cards={cards} />
+        </>
+      )}
+      {!isLoading && cards.length === 0 && (
+        <div className={styles.notfound}>No data found</div>
+      )}
+
       <Footer dataPerPage={setPerPage} />
     </div>
   );
