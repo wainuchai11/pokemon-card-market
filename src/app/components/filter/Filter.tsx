@@ -87,7 +87,7 @@ const Filter: FC<FilterProps> = ({
       <div className={styles.filters}>
         <SelectBox items={memorizeSet} title="set" selected={setSelectedSet} />
         <SelectBox
-          items={memorizeTypes}
+          items={memorizeTypes || []}
           title="type"
           selected={setSelectedType}
         />

@@ -1,4 +1,4 @@
-import { CardSet } from "../../../../constant";
+import { CardSet, TypeAndRarity } from "../../../../constant";
 import styles from "./selectBox.module.css";
 import React from "react";
 
@@ -46,7 +46,7 @@ type Item = {
 };
 
 type SelectBoxProps = {
-  items: Item[] | string[] | CardSet[];
+  items: TypeAndRarity[] | CardSet[] | string[];
   title?: string;
   selected?: (item: Item) => void;
 };
