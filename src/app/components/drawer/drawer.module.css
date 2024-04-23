@@ -14,7 +14,8 @@
 .sidenav.open {
   visibility: visible;
   opacity: 1;
-  width: 500px;
+  width: 30%;
+  min-width: 500px;
   z-index: 9999;
 }
 
@@ -212,4 +213,16 @@
 
 .paymentBtn:hover {
   background-color: #ff6f61;
+}
+
+@media screen and (max-width: 640px){
+  .sidenav {
+    padding: 10px 120px 0 20px;
+    width: 100%;
+  }
+
+  .sidenav.open {
+    width: 100%;
+  }
+ 
 }
